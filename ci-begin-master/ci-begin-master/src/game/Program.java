@@ -1,3 +1,5 @@
+package game;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -9,14 +11,11 @@ import java.awt.event.KeyEvent;
 public class Program {
     public static void main(String[] args) {
         JFrame window = new JFrame();
-        Player player = new Player();
-        Background background = new Background();
-///        GamePanel panel = new GamePanel();
-        background.setBackground(Color.BLACK);
-        window.setPreferredSize(new Dimension(600,800));
+        GamePanel panel = new GamePanel();
+        panel.setBackground(Color.BLACK);
+        panel.setPreferredSize(new Dimension(600,800));
 
-        window.add(background);
-//        window.add(player);
+        window.add(panel);
         window.pack();
 
         window.setTitle("MindX-Touhow");
@@ -39,6 +38,9 @@ public class Program {
                 if (e.getKeyCode() == KeyEvent.VK_S){
                     KeyEventPress.isDOWNPress = true;
                 }
+                if (e.getKeyCode() == KeyEvent.VK_SPACE){
+                    KeyEventPress.isFirePress = true;
+                }
             }
 
             @Override
@@ -55,13 +57,14 @@ public class Program {
                 if (e.getKeyCode() == KeyEvent.VK_S){
                     KeyEventPress.isDOWNPress = false;
                 }
+                if (e.getKeyCode() == KeyEvent.VK_SPACE){
+                    KeyEventPress.isFirePress = false;
+                }
             }
         };
         window.addKeyListener(keyHandler);
         window.setVisible(true);
-//        background.GameLoop();
-//        player.GameLoop();
-
+        panel.GameLoop();
 
     }
 }

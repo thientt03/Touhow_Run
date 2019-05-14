@@ -1,3 +1,5 @@
+package game;
+
 public class Vector2D {
     public double x;
     public double y;
@@ -29,6 +31,9 @@ public class Vector2D {
     public void set(double x, double y){
         this.x = x;
         this.y = y;
+    }
+    public void set(Vector2D other){
+        this.set(other.x, other.y);
     }
 
     public Vector2D clone(){
