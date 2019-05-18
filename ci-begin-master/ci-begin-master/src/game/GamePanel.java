@@ -1,21 +1,19 @@
 package game;
 
-import game.enemy.Enemy;
+import game.enemy.EnemySummoner;
 import game.player.Player;
-import game.player.PlayerBullet;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class GamePanel extends JPanel {
     Player player;
     Background background;
-    Enemy enemy;
+//    Enemy enemy;
 
     public GamePanel(){
         this.background = new Background();
         this.player = new Player();
-        this.enemy = new Enemy();
+        EnemySummoner es = new EnemySummoner();
     }
 
     @Override
@@ -26,6 +24,9 @@ public class GamePanel extends JPanel {
                 object.render(g);
             }
         }
+        //chỉnh sửa sau (tobe countiue.....)
+        g.setColor(Color.BLACK);
+        g.fillRect(385,0,800-384,800);
     }
     public void GameLoop(){
         long lastTime = 0;

@@ -15,7 +15,7 @@ public class Background extends GameObject {
     }
     public void run(){
         //run logic
-        position.y += 5;
+        position.y += 3;
         if (position.y >= 0){
             position.y = 0;
         }

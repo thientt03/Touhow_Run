@@ -1,22 +1,36 @@
 package game.player;
 
 import game.GameObject;
-import game.Vector2D;
+import game.enemy.Enemy;
+import game.physics.BoxCollider;
 import tklibs.SpriteUtils;
 
 public class PlayerBullet extends GameObject {
+    public int damage;
 
     public PlayerBullet() {
-        this.position = new Vector2D();
         image = SpriteUtils.loadImage("C:\\Users\\thien\\Desktop\\Touhow_Run-master\\Touhow_Run-master\\ci-begin-master\\ci-begin-master\\assets\\images\\player-bullets\\a\\1.png");
+        velocity.set(0,-3);
+        hitBox = new BoxCollider(this,24,24);
+        damage = 1;
     }
     @Override
     public void run(){
         //tốc độ của viên đạn
-        this.position.y -= 3;
+        super.run();
         this.deactiveIfNeeded();
+        this.checkEnemy();
     }
-    private void deactiveIfNeeded(){
+
+    public void checkEnemy() {
+        Enemy enemy = GameObject.findIntersect(Enemy.class, hitBox);
+        if (enemy != null){
+            enemy.takeDamage(damage);
+            this.deactive();
+        }
+    }
+
+    public void deactiveIfNeeded(){
         if (position.y < -30){
             this.deactive();
         }

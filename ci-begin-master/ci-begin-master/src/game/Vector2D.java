@@ -41,7 +41,7 @@ public class Vector2D {
     }
 
     public double getLength(){
-        return Math.sqrt(x*2+y*2);
+        return Math.sqrt(x*x+y*y);
     }
 
     public void setLength(double length){
@@ -62,5 +62,13 @@ public class Vector2D {
             this.x = length*Math.cos(angle);
             this.y = length*Math.sin(angle);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Vector2D{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
