@@ -2,17 +2,22 @@ package game.enemy;
 
 import game.GameObject;
 import game.physics.BoxCollider;
+import game.player.Player;
+import game.renderer.Renderer;
 import tklibs.SpriteUtils;
 
 public class Enemy extends GameObject {
     public int hp;
+    public int damage;
     public Enemy(){
-        image = SpriteUtils.loadImage("C:\\Users\\thien\\Desktop\\Touhow_Run-master\\Touhow_Run-master\\ci-begin-master\\ci-begin-master\\assets\\images\\enemies\\level0\\black\\0.png");
+//        image = SpriteUtils.loadImage("");
+        renderer = new Renderer("C:\\Users\\thien\\Desktop\\Touhow_Run-master\\Touhow_Run-master\\ci-begin-master\\ci-begin-master\\assets\\images\\enemies\\level0\\black");
         position.set(0,-50);
         velocity.set(0,3);
         velocity.setAngle(Math.toRadians(25));
         hitBox = new BoxCollider(this,28,28);
         hp = 3;
+        damage = 1;
     }
     public void takeDamage(int damage){
         hp -= damage;
@@ -27,11 +32,20 @@ public class Enemy extends GameObject {
         super.run();// velocity
         this.move();
         this.enemyFire();
+        this.checkPlayer();
         this.deactiveIfNeedes();
 
     }
 
-    private void move() {
+    private void checkPlayer() {
+            Player player = GameObject.findIntersect(Player.class,hitBox);
+            if (player!= null){
+                player.takeDamage(damage);
+                this.deactive();
+            }
+    }
+
+    public void move() {
         if (this.onGoingRinght() && this.outofBoundRight()) {
             this.reverseVelocityX();
         }

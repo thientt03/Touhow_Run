@@ -1,6 +1,8 @@
 package game;
 
 import game.physics.BoxCollider;
+import game.renderer.Renderer;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -53,7 +55,9 @@ public class GameObject {//player, background, playerBullet
         return null;
     }
     //định nghĩa đối tượng
-    public BufferedImage image;
+
+    //Renderer renderer
+    public Renderer renderer;
     public Vector2D position;
     public boolean active;
     public Vector2D velocity;
@@ -68,8 +72,11 @@ public class GameObject {//player, background, playerBullet
 
     //hàm vẽ ảnh
     public void render(Graphics g){
-        if (image != null){
-            g.drawImage(image,(int)position.x,(int)position.y,null);
+//        if (image != null){
+//            g.drawImage(image,(int)position.x,(int)position.y,null);
+//        }
+        if (renderer != null){
+            renderer.render(g, this);
         }
     }
 

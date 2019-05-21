@@ -14,6 +14,7 @@ public class GamePanel extends JPanel {
         this.background = new Background();
         this.player = new Player();
         EnemySummoner es = new EnemySummoner();
+        Item it = new Item();
     }
 
     @Override

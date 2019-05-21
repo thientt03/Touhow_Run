@@ -3,13 +3,15 @@ package game.player;
 import game.GameObject;
 import game.enemy.Enemy;
 import game.physics.BoxCollider;
+import game.renderer.Renderer;
 import tklibs.SpriteUtils;
 
 public class PlayerBullet extends GameObject {
     public int damage;
 
     public PlayerBullet() {
-        image = SpriteUtils.loadImage("C:\\Users\\thien\\Desktop\\Touhow_Run-master\\Touhow_Run-master\\ci-begin-master\\ci-begin-master\\assets\\images\\player-bullets\\a\\1.png");
+//        image = SpriteUtils.loadImage("");
+        renderer = new Renderer("C:\\\\Users\\\\thien\\\\Desktop\\\\Touhow_Run-master\\\\Touhow_Run-master\\\\ci-begin-master\\\\ci-begin-master\\\\assets\\\\images\\\\player-bullets\\\\a");
         velocity.set(0,-3);
         hitBox = new BoxCollider(this,24,24);
         damage = 1;
